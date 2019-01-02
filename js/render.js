@@ -47,10 +47,9 @@ function renderWinningMsg(isGameOver) {
 function renderWhosTurn() {
     const elWhosTurn = document.querySelector('.whos-turn');
     const player = getPlayer();
-    if (isPcPlaying() && player === 2) elWhosTurn.innerHTML = 'PC is playing...';
-    else {
-        elWhosTurn.innerHTML = `Player ${player}, it's your turn.`;
-    }
+    if (isGameOver()) elWhosTurn.innerHTML = '';
+    else if (isPcPlaying() && player === 2) elWhosTurn.innerHTML = 'PC is playing...';
+    else elWhosTurn.innerHTML = `Player ${player}, it's your turn.`;
     elWhosTurn.style.color = player === 1 ? 'yellow' : 'red';
 }
 
