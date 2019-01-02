@@ -36,6 +36,7 @@ function renderWinningMsg(isGameOver) {
         elWinning.innerHTML = '';
         elWinning.style.backgroundColor = 'transparent';
     }
+    _showSequence(isGameOver);
 }
 
 function renderWhosTurn() {
@@ -43,4 +44,17 @@ function renderWhosTurn() {
     const player = getPlayer();
     elWhosTurn.innerHTML = `Player ${player}, it's your turn.`;
     elWhosTurn.style.color = player === 1 ? 'yellow' : 'red';
+}
+
+function _showSequence(isGameOver) {
+    const sequence = getSequence();
+    var elSequence = [];
+    sequence.forEach(cell => {
+        let elCell = document.querySelector(`.cell-${cell.row}-${cell.col}`);
+        elSequence.push(elCell);
+    })
+    elSequence.forEach(el=>{
+        if (isGameOver) el.classList.add('cell-sequence');
+        else if (el.classList.contains('cell-sequence')) el.classList.remove('cell-sequence');
+    })
 }

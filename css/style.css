@@ -62,6 +62,10 @@ body {
     /* border: 1px solid black; */
 }
 
+.cell-sequence {
+    animation: scale 4s infinite;
+}
+
 .btn-fill {
     cursor: pointer;
     border-radius: 3px;
@@ -109,3 +113,9 @@ body {
         width: 100%;
     }
 }
+
+@keyframes scale {
+    0%   {transform: scale(.9)}
+    50%  {transform: scale(1.1)}
+    100% {transform: scale(.9)}
+  }

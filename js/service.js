@@ -1,7 +1,8 @@
 var gState = {
     board: _createBoard(),
     currPlayer: 1,
-    isGameOver: false
+    isGameOver: false,
+    sequences: []
 };
 
 function isGameOver() {
@@ -15,10 +16,15 @@ function getPlayer() {
     return gState.currPlayer;
 }
 
+function getSequence() {
+    return gState.sequences;
+}
+
 function resetBoard() {
     gState.isGameOver = false;
     gState.currPlayer = 1;
     gState.board = _createBoard();
+    gState.sequences = [];
 }
 
 function nextPlayer() {
@@ -41,9 +47,12 @@ function _checkRow(row) {
     var sequences = [{}];
     for (let i = 0; i < board[row].length; i++) {
         let currCell = board[row][i];
-        if (currCell.player === sequences[0].player) sequences.push(currCell);
-        else sequences = [currCell];
-        if (sequences.length === 4 && sequences[0].player) return true;
+        if (currCell.player === sequences[0].player) sequences.push({...currCell,row,col: i});
+        else sequences = [{...currCell,row,col: i}];
+        if (sequences.length === 4 && sequences[0].player) {
+            gState.sequences = sequences
+            return true;
+        }
     }
     return false;
 }
@@ -53,9 +62,12 @@ function _checkCol(col) {
     var sequences = [{}];
     for (let i = 0; i < board.length; i++) {
         let currCell = board[i][col];
-        if (currCell.player === sequences[0].player) sequences.push(currCell);
-        else sequences = [currCell];
-        if (sequences.length === 4 && sequences[0].player) return true;
+        if (currCell.player === sequences[0].player) sequences.push({...currCell,row: i,col});
+        else sequences = [{...currCell,row: i,col}];
+        if (sequences.length === 4 && sequences[0].player) {
+            gState.sequences = sequences
+            return true;
+        }
     }
     return false;
 }
@@ -66,9 +78,12 @@ function _checkBackSlash(row, col) {
     for (let i = -3; i <= 3; i++) {
         if (!(board[row + i] && board[row + i][col + i])) continue;
         let currCell = board[row + i][col + i];
-        if (currCell.player === sequences[0].player) sequences.push(currCell);
-        else sequences = [currCell];
-        if (sequences.length === 4 && sequences[0].player) return true;
+        if (currCell.player === sequences[0].player) sequences.push({...currCell,row: row + i,col: col + i});
+        else sequences = [{...currCell,row: row + i,col: col + i}];
+        if (sequences.length === 4 && sequences[0].player) {
+            gState.sequences = sequences
+            return true;
+        }
     }
     return false;
 }
@@ -79,9 +94,12 @@ function _checkSlash(row, col) {
     for (let i = -3; i <= 3; i++) {
         if (!(board[row + i] && board[row + i][col - i])) continue;
         let currCell = board[row + i][col - i];
-        if (currCell.player === sequences[0].player) sequences.push(currCell);
-        else sequences = [currCell];
-        if (sequences.length === 4 && sequences[0].player) return true;
+        if (currCell.player === sequences[0].player) sequences.push({...currCell,row: row + i,col: col - i});
+        else sequences = [{...currCell,row: row + i,col: col - i}];
+        if (sequences.length === 4 && sequences[0].player) {
+            gState.sequences = sequences
+            return true;
+        }
     }
     return false;
 }
