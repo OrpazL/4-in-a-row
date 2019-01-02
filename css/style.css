@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+button:focus {
+    outline: 0;
+}
+
+body {
+    text-align: center;
+    background-color: oldlace;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.top-panel {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.whos-turn {
+    color: yellow;
+    -webkit-text-stroke: 0.5px black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: lightsteelblue;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.cell {
+    height: calc(100vw / 8);
+    background-color: blue;
+    transition: 0.2s;
+    border-radius: 5px;
+}
+
+.cell:not(.filled-1):not(.filled-2):hover {
+    background-color: wheat;
+    box-shadow: 0px 0px 5px 2px inset black;
+    cursor: pointer;
+}
+.cell:not(.filled-1):not(.filled-2):hover::after {
+    content: '↓';
+}
+
+.cell.filled-1 {
+    background-color: yellow;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 2px inset darkorange;
+    /* border: 1px solid darkorange; */
+}
+
+.cell.filled-2 {
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 2px inset darkred;
+    /* border: 1px solid black; */
+}
+
+.btn-fill {
+    cursor: pointer;
+    border-radius: 3px;
+    height: 25px;
+    width: 100%;
+    border: 0;
+    background-color: royalblue;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+}
+
+.btn-fill:hover {
+    background-color: navy;
+    box-shadow: 0px 0px 3px 2px inset blue;
+}
+
+.btn-reset {
+    cursor: pointer;
+    background-color: lightblue;
+    border: 0;
+    padding: 10px;
+    margin: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+    height: 50%;
+}
+
+.btn-reset:hover {
+    background-color: aquamarine;
+}
+
+.winning {
+    padding: 10px;
+}
+
+@media (min-width: 700px) {
+    .cell {
+        height: calc(700px / 7);
+    }
+    .winning {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+    }
+}
