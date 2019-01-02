@@ -3,13 +3,7 @@ function init() {
     render();
 }
 
-function fillCol(row, col) {
-    const board = getBoard();
-    if (board[row][col].player) return;
-    board[row][col].player = getPlayer();
-    nextPlayer();
-}
-
+// CHECKS WHERE TO PAINT IN THE COLUMN
 function cellClicked(col) {
     if (isGameOver()) return;
     const board = getBoard();
@@ -21,4 +15,12 @@ function cellClicked(col) {
             break;
         } else continue;
     }
+}
+
+// UPDATING THE MODEL
+function fillCol(row, col) {
+    const board = getBoard();
+    if (board[row][col].player) return;
+    board[row][col].player = getPlayer();
+    nextPlayer();
 }

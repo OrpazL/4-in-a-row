@@ -4,6 +4,7 @@ function render() {
     renderWhosTurn();
 }
 
+// RENDERS THE BOARD
 function renderBoard() {
     const board = getBoard();
     var strHtmls = '';
@@ -25,6 +26,7 @@ function renderBoard() {
     elBoardContainer.innerHTML = strHtmls;
 }
 
+// RENDERS WINNING MODAL
 function renderWinningMsg(isGameOver) {
     const winner = getPlayer();
     const elWinning = document.querySelector('.winning');
@@ -39,6 +41,7 @@ function renderWinningMsg(isGameOver) {
     _showSequence(isGameOver);
 }
 
+// RENDERS TURNS GUIDE LINE
 function renderWhosTurn() {
     const elWhosTurn = document.querySelector('.whos-turn');
     const player = getPlayer();
@@ -46,15 +49,17 @@ function renderWhosTurn() {
     elWhosTurn.style.color = player === 1 ? 'yellow' : 'red';
 }
 
+// RENDERS ANIMATION ON THE WINNING SEQUENCE
 function _showSequence(isGameOver) {
     const sequence = getSequence();
     var elSequence = [];
     sequence.forEach(cell => {
         let elCell = document.querySelector(`.cell-${cell.row}-${cell.col}`);
         elSequence.push(elCell);
-    })
-    elSequence.forEach(el=>{
+    });
+    elSequence.forEach(el => {
         if (isGameOver) el.classList.add('cell-sequence');
-        else if (el.classList.contains('cell-sequence')) el.classList.remove('cell-sequence');
-    })
+        else if (el.classList.contains('cell-sequence'))
+            el.classList.remove('cell-sequence');
+    });
 }
