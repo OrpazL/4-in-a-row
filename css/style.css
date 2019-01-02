@@ -106,12 +106,24 @@ body {
 
 @media (min-width: 700px) {
     .cell {
-        height: calc(700px / 7);
+        height: calc(700px / 8);
     }
     .winning {
         position: fixed;
         bottom: 10px;
         left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    main {
+        position: relative;
+    }
+    .whos-turn {
+        position: absolute;
+        bottom: -50px;
+        /* left: 0; */
         width: 100%;
     }
 }
