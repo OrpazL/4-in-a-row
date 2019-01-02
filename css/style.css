@@ -63,7 +63,7 @@ body {
 }
 
 .cell-sequence {
-    animation: scale 4s infinite;
+    animation: scale 3s linear infinite;
 }
 
 .btn-fill {
@@ -116,12 +116,10 @@ body {
 
 @keyframes scale {
     0% {
-        transform: scale(0.9);
-    }
-    50% {
-        transform: scale(1.1);
+        transform: rotateY(0deg);
+
     }
     100% {
-        transform: scale(0.9);
+        transform: rotateY(360deg);
     }
 }
