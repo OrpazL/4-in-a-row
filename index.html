@@ -22,18 +22,19 @@
         <div class="top-panel">
             <h2 class="whos-turn">Player 1, it's your turn.</h2>
             <button onclick="init()" class="btn-reset">Reset</button>
+            <label><input type="checkbox" id="play-with-pc" onchange="init()" checked />Play VS PC</label>
         </div>
         <div class="container">
             <table>
                 <thead>
                         <tr>
-                            <td><button onclick="cellClicked(0)" class="btn-fill">&downarrow;</button></td>
-                            <td><button onclick="cellClicked(1)" class="btn-fill">&downarrow;</button></td>
-                            <td><button onclick="cellClicked(2)" class="btn-fill">&downarrow;</button></td>
-                            <td><button onclick="cellClicked(3)" class="btn-fill">&downarrow;</button></td>
-                            <td><button onclick="cellClicked(4)" class="btn-fill">&downarrow;</button></td>
-                            <td><button onclick="cellClicked(5)" class="btn-fill">&downarrow;</button></td>
-                            <td><button onclick="cellClicked(6)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(0)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(1)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(2)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(3)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(4)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(5)" class="btn-fill">&downarrow;</button></td>
+                            <td><button onclick="onCellClicked(6)" class="btn-fill">&downarrow;</button></td>
                         </tr>
                 </thead>
                 <tbody class="board-container">

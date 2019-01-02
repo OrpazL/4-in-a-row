@@ -10,11 +10,14 @@ body {
     text-align: center;
     background-color: oldlace;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+
 }
 
 .top-panel {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -29,8 +32,6 @@ body {
     flex-direction: column;
     width: 100%;
     background-color: lightsteelblue;
-    max-width: 700px;
-    margin: 0 auto;
 }
 .cell {
     height: calc(100vw / 8);
@@ -110,6 +111,7 @@ body {
     .winning {
         position: fixed;
         bottom: 10px;
+        left: 0;
         width: 100%;
     }
 }

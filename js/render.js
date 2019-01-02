@@ -15,7 +15,7 @@ function renderBoard() {
             rowHtmls += `
             <td class="cell cell-${rowIdx}-${colIdx} ${
                 col.player ? 'filled-' + col.player : ''
-            }" onclick="cellClicked(${colIdx})">
+            }" onclick="onCellClicked(${colIdx})">
             
             </td>
             `;
@@ -28,11 +28,13 @@ function renderBoard() {
 
 // RENDERS WINNING MODAL
 function renderWinningMsg(isGameOver) {
-    const winner = getPlayer();
+    const loser = getPlayer();
     const elWinning = document.querySelector('.winning');
+    const isVsPC = document.querySelector('#play-with-pc').checked;
     if (isGameOver) {
-        elWinning.innerHTML = `Player ${winner === 1 ? 2 : 1} won the game!`;
-        elWinning.style.color = winner === 1 ? 'red' : 'yellow';
+        if (isVsPC && loser === 1) elWinning.innerHTML = `PC won the game!`;
+        else elWinning.innerHTML = `Player ${loser === 1 ? 2 : 1} won the game!`;
+        elWinning.style.color = loser === 1 ? 'red' : 'yellow';
         elWinning.style.backgroundColor = 'royalblue';
     } else {
         elWinning.innerHTML = '';
@@ -45,7 +47,10 @@ function renderWinningMsg(isGameOver) {
 function renderWhosTurn() {
     const elWhosTurn = document.querySelector('.whos-turn');
     const player = getPlayer();
-    elWhosTurn.innerHTML = `Player ${player}, it's your turn.`;
+    if (isPcPlaying() && player === 2) elWhosTurn.innerHTML = 'PC is playing...';
+    else {
+        elWhosTurn.innerHTML = `Player ${player}, it's your turn.`;
+    }
     elWhosTurn.style.color = player === 1 ? 'yellow' : 'red';
 }
 

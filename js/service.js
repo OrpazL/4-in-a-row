@@ -4,13 +4,42 @@ var gState = {
     board: [],
     currPlayer: 1,
     isGameOver: false,
-    sequences: []
+    sequences: [],
+    pcIsPlaying: false,
 };
+
+// CHECKS WHERE TO PAINT IN THE COLUMN
+function cellClicked(col) {
+    if (isGameOver()) return;
+    const board = getBoard();
+    for (let row = board.length - 1; row >= 0; row--) {
+        if (!board[row][col].player) {
+            fillCol(row, col);
+            checkVictory(row, col);
+            render();
+            break;
+        } else continue;
+    }
+    
+}
+
+// UPDATING THE MODEL
+function fillCol(row, col) {
+    const board = getBoard();
+    if (board[row][col].player) return;
+    board[row][col].player = getPlayer();
+    nextPlayer();
+}
 
 /* GETTERS */
 function isGameOver() {
     return gState.isGameOver;
 }
+
+function isPcPlaying() {
+    return gState.pcIsPlaying;
+}
+
 function getBoard() {
     return gState.board;
 }
@@ -22,12 +51,18 @@ function getPlayer() {
 function getSequence() {
     return gState.sequences;
 }
+/*************/
+
+function setPcPlaying(bool) {
+    gState.pcIsPlaying = bool;
+}
 
 function resetBoard() {
     gState.isGameOver = false;
     gState.currPlayer = 1;
     gState.board = _createBoard();
     gState.sequences = [];
+    
 }
 
 function nextPlayer() {
@@ -127,4 +162,14 @@ function _createCell() {
     return {
         player: null
     };
+}
+
+
+
+// UTIL
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
